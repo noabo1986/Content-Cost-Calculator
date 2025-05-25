@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Manager Revenue Calculator</title>
+  <style>
+    /* Styles omitted for brevity (unchanged) */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Revenue Calculator</h1>
+      <p>Calculate content cost distribution and publisher shares</p>
+    </div>
+
+    <div class="content">
+      <div class="input-section">
+        <h2 class="section-title">Input Values</h2>
+        <div class="input-grid">
+          <div class="input-group">
+            <label for="contentCost">Content Cost ($)</label>
+            <input type="number" id="contentCost" step="0.01" placeholder="0.00">
+          </div>
+          <div class="input-group">
+            <label for="primisVideoRev">Primis Video Revenue ($)</label>
+            <input type="number" id="primisVideoRev" step="0.01" placeholder="0.00">
+          </div>
+          <div class="input-group">
+            <label for="primisVideoCost">Primis Video Cost ($)</label>
+            <input type="number" id="primisVideoCost" step="0.01" placeholder="0.00">
+          </div>
+          <div class="input-group">
+            <label for="placementRevShare">Placement Rev Share (%)</label>
+            <input type="number" id="placementRevShare" step="0.01" placeholder="0">
+          </div>
+          <div class="input-group">
+            <label for="publisherContentRevShare">Publisher Content Rev Share (%)</label>
+            <input type="number" id="publisherContentRevShare" step="0.01" placeholder="0">
+          </div>
+        </div>
+      </div>
+
+      <button class="calculate-btn" onclick="calculate()">Calculate Results</button>
+
+      <div class="results" id="results">
+        <h2 class="section-title">Results</h2>
+        <div class="result-card">
+          <div class="result-label">Content Cost generated from Primis demand</div>
+          <div class="result-value"><span class="currency">$</span><span id="primisContentCost">0.00</span></div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Content Cost generated from ad server demand</div>
+          <div class="result-value"><span class="currency">$</span><span id="adServerContentCost">0.00</span></div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Publisher Share of Content Cost</div>
+          <div class="result-value"><span class="currency">$</span><span id="publisherShare">0.00</span></div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Primis Share of Content Cost</div>
+          <div class="result-value"><span class="currency">$</span><span id="primisShare">0.00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function calculate() {
+      const contentCost = parseFloat(document.getElementById('contentCost').value) || 0;
+      const primisVideoRev = parseFloat(document.getElementById('primisVideoRev').value) || 0;
+      const primisVideoCost = parseFloat(document.getElementById('primisVideoCost').value) || 0;
+      const placementRevShare = parseFloat(document.getElementById('placementRevShare').value) || 0;
+      const publisherContentRevShare = parseFloat(document.getElementById('publisherContentRevShare').value) || 0;
+
+      if (publisherContentRevShare <= 0 || publisherContentRevShare >= 100) {
+        alert('Publisher Content Rev Share must be between 0 and 100');
+        return;
+      }
+      if (placementRevShare < 0 || placementRevShare >= 100) {
+        alert('Placement Rev Share must be between 0 and 100');
+        return;
+      }
+
+      const primisAdjustedCost = primisVideoCost * 100 / (100 - placementRevShare);
+      const primisContentCost = (primisVideoRev - primisAdjustedCost) * 100 / publisherContentRevShare;
+      const adServerContentCost = contentCost - primisContentCost;
+      const publisherShare = (primisContentCost * publisherContentRevShare / 100) * (100 - placementRevShare) / 100;
+      const primisShare = contentCost - publisherShare;
+
+      document.getElementById('primisContentCost').textContent = primisContentCost.toFixed(2);
+      document.getElementById('adServerContentCost').textContent = adServerContentCost.toFixed(2);
+      document.getElementById('publisherShare').textContent = publisherShare.toFixed(2);
+      document.getElementById('primisShare').textContent = primisShare.toFixed(2);
+
+      document.getElementById('results').classList.add('show');
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
