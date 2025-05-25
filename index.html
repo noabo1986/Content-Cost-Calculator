@@ -65,6 +65,12 @@
 
     .input-grid {
       display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .input-row {
+      display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
@@ -142,8 +148,7 @@
       .content {
         padding: 20px;
       }
-
-      .input-grid {
+      .input-row {
         grid-template-columns: 1fr;
       }
     }
@@ -164,21 +169,25 @@
             <label for="contentCost">Content Cost ($)</label>
             <input type="number" id="contentCost" step="0.01" placeholder="0.00">
           </div>
-          <div class="input-group">
-            <label for="primisVideoRev">Primis Video Revenue ($)</label>
-            <input type="number" id="primisVideoRev" step="0.01" placeholder="0.00">
+          <div class="input-row">
+            <div class="input-group">
+              <label for="primisVideoRev">Primis Video Revenue ($)</label>
+              <input type="number" id="primisVideoRev" step="0.01" placeholder="0.00">
+            </div>
+            <div class="input-group">
+              <label for="primisVideoCost">Primis Video Cost ($)</label>
+              <input type="number" id="primisVideoCost" step="0.01" placeholder="0.00">
+            </div>
           </div>
-          <div class="input-group">
-            <label for="primisVideoCost">Primis Video Cost ($)</label>
-            <input type="number" id="primisVideoCost" step="0.01" placeholder="0.00">
-          </div>
-          <div class="input-group">
-            <label for="placementRevShare">Placement Rev Share (%)</label>
-            <input type="number" id="placementRevShare" step="0.01" placeholder="0">
-          </div>
-          <div class="input-group">
-            <label for="publisherContentRevShare">Publisher Content Rev Share (%)</label>
-            <input type="number" id="publisherContentRevShare" step="0.01" placeholder="0">
+          <div class="input-row">
+            <div class="input-group">
+              <label for="placementRevShare">Placement Rev Share (%)</label>
+              <input type="number" id="placementRevShare" step="0.01" placeholder="0">
+            </div>
+            <div class="input-group">
+              <label for="publisherContentRevShare">Publisher Content Rev Share (%)</label>
+              <input type="number" id="publisherContentRevShare" step="0.01" placeholder="0">
+            </div>
           </div>
         </div>
       </div>
