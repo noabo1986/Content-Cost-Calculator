@@ -73,7 +73,8 @@
       const placementRevShare = parseFloat(document.getElementById('placementRevShare').value) || 0;
       const publisherContentRevShare = parseFloat(document.getElementById('publisherContentRevShare').value) || 0;
 
-      if (publisherContentRevShare <= 0 || publisherContentRevShare >= 100) {
+    
+        if (publisherContentRevShare <= 0 || publisherContentRevShare > 100) {
         alert('Publisher Content Rev Share must be between 0 and 100');
         return;
       }
