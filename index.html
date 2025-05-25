@@ -5,7 +5,148 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account Manager Revenue Calculator</title>
   <style>
-    /* Styles omitted for brevity (unchanged) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f5f7fa;
+      padding: 20px;
+      min-height: 100vh;
+      color: #0e528d;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .header {
+      background: #0e528d;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      opacity: 0.9;
+      font-size: 14px;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .input-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      color: #0e528d;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #f8b12f;
+      padding-bottom: 8px;
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      color: #333;
+      font-weight: 500;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e1e5e9;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .calculate-btn {
+      background: #ff1355;
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin: 30px 0;
+      transition: background-color 0.3s ease;
+    }
+
+    .calculate-btn:hover {
+      background: #e0114a;
+    }
+
+    .results {
+      display: none;
+    }
+
+    .results.show {
+      display: block;
+    }
+
+    .result-card {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-left: 4px solid #f8b12f;
+    }
+
+    .result-label {
+      color: #0e528d;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .result-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .currency {
+      color: #666;
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        padding: 20px;
+      }
+
+      .input-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
